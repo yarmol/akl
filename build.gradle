@@ -1,0 +1,188 @@
+group 'com.gtm.lukspay'
+version '1.0.0'
+
+allprojects {
+    ext.repo = {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+repositories  {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+
+buildscript {
+    repositories{
+        maven{
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE"
+    }
+}
+apply plugin: "java"
+apply plugin: "application"
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'maven-publish'
+apply plugin: 'maven'
+
+dependencyManagement {
+    imports {
+        mavenBom 'com.gtm.lukspay:lukspay-root:3.0.0'
+    }
+}
+
+
+
+uploadArchives {
+    repositories repo
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+
+run {
+    if (project.properties.get('activeProfile')  != null) {
+        args = ["--spring.profiles.active=" + project.activeProfile]
+    }
+    if (project.properties.get('mem')  != null) {
+        jvmArgs = ['-Xmx'+mem+'m','-Xss256k']
+    }
+}
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'com.gtm.lukspay.devices.DevicesApplication'
+
+dependencies {
+    //COMPILE
+    //xml-jackson-json
+    compile('com.fasterxml.jackson.core:jackson-databind')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jdk8')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+    compile('com.fasterxml.jackson.module:jackson-module-parameter-names')
+    //compile('javax.exception:exception-api')
+    compile('org.projectlombok:lombok')
+    compile('org.reflections:reflections')
+    compile('javax.xml.bind:jaxb-api')
+
+    //lambda
+    compile 'io.vavr:vavr'
+    compile 'io.vavr:vavr-jackson'
+    compile 'io.vavr:vavr-match'
+
+    //security
+    compile 'org.bouncycastle:bcprov-jdk15on'
+    compile 'org.bouncycastle:bcpkix-jdk15on'
+    compile 'com.nimbusds:nimbus-jose-jwt'
+
+    //apache
+    compile 'org.apache.commons:commons-collections4'
+    compile 'org.apache.commons:commons-lang3'
+
+    //lukspay
+    compile("com.gtm.lukspay:lukspay-corelib")
+    //compile("com.gtm.lukspay:lukspay-security")
+    compile("com.gtm.lukspay:lukspay-feign-clients")
+
+    //spring
+    //compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') {
+        exclude group: 'org.springframework', module: 'spring-jdbc'
+    }
+    compile('mysql:mysql-connector-java')
+    compile('javax.validation:validation-api')
+    compile('org.springframework:spring-beans')
+    compile('org.hibernate:hibernate-validator')
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.0.RELEASE'
+    //compile 'org.springframework:spring-dao:2.0.8'
+
+    //test
+    compile('junit:junit')
+
+    //rest client
+    compile 'com.netflix.feign:feign-jackson'
+    //compile 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+    compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    //eureka
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+
+// https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.7.RELEASE'
+    //compile 'org.springframework:spring-dao:2.0.8'
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.1.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.7.RELEASE'
+    compile('junit:junit')
+
+    //TEST
+    //xml
+    testCompile 'com.fasterxml.jackson.core:jackson-databind'
+    testCompile('com.fasterxml.jackson.datatype:jackson-datatype-jdk8')
+    testCompile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+    testCompile('com.fasterxml.jackson.module:jackson-module-parameter-names')
+    //testCompile 'javax.exception:exception-api'
+
+    //lukspay
+    testCompile('com.gtm.lukspay:lukspay-corelib')
+    testCompile('com.gtm.lukspay:lukspay-security')
+    testCompile("com.gtm.lukspay:lukspay-feign-clients")
+
+    //Spring
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework.security:spring-security-test:5.1.0.RELEASE'
+    testCompile 'org.springframework:spring-web'
+    testCompile('org.springframework:spring-test')
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    testCompile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.7.RELEASE'
+
+    testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+
+
+// https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
+    testCompile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.1.3.RELEASE'
+    testCompile group: 'org.springframework', name: 'spring-tx', version: '5.0.7.RELEASE'
+    testCompile('junit:junit')
+    testCompile ('org.springframework.boot:spring-boot-starter-data-mongodb')
+            {
+               // exclude group: 'org.springframework.data', module: 'spring-data-mongodb'
+                exclude group: 'org.mongodb', module: 'mongodb-driver'
+                exclude group: 'org.mongodb', module: 'mongodb-driver-core'
+            }
+
+   // testCompile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '2.1.1.RELEASE'
+    //testCompile 'org.springframework:spring-tx:5.1.3.RELEASE'
+    //testCompile 'org.springframework:spring-dao:2.0.8'
+    testCompile 'org.mongodb:mongo-java-driver'
+    testCompile 'org.mongodb:bson'
+    testCompile 'org.mongodb:mongodb-driver-core'
+
+    //testCompile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.0.RELEASE'
+    testCompile('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework', module: 'spring-jdbc'
+    }
+    /*testCompile('org.springframework.boot:spring-boot-starter-data-jpa') {
+        exclude group: 'org.springframework', module: 'spring-jdbc'
+    }*/
+    //testCompile "mysql:mysql-connector-java:8.0.11"
+
+    //test
+
+
+}
