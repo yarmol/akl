@@ -28,6 +28,5 @@ public class TrustedDeviceEntity {
 
     @Column(name = "date_creation")
     private ZonedDateTime dateCreation;
-
 }
 

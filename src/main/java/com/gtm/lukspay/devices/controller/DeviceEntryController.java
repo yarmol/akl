@@ -10,6 +10,7 @@ import com.gtm.lukspay.devices.repository.DeviceEntityEntryRepository;
 import com.gtm.lukspay.devices.repository.DeviceEntityRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.jooq.lambda.tuple.Tuple;
+import org.jooq.lambda.tuple.Tuple2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.POST;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -57,6 +59,10 @@ public class DeviceEntryController {
 
 
         log.info(mapper.valueToTree(table).toString());
+
+
+        Map<Integer, Tuple2<String,String>> table2;
+
 
 
     }

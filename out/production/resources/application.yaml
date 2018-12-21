@@ -1,0 +1,45 @@
+logging:
+    level:
+        org.apache.coyote.http11 : DEBUG
+        org.springframework.security: DEBUG
+        com.gtm.lukspay: debug
+        root: info
+
+
+secret:
+  session_algorithm: AES
+  session_bits: 128
+
+
+spring:
+  mvc:
+    dispatch-options-request: true
+  jpa:
+     hibernate.ddl-auto: update
+  datasource:
+     username: lux
+     password: iddqd123
+     url: jdbc:mysql://127.0.0.1:3306/lukspay?useSSL=false&serverTimezone=UTC
+     testWhileIdle: true
+     validationQuery: SELECT 1
+
+server:
+  address: 0.0.0.0
+  port: 8381
+  servlet:
+    contextPath: /devices
+    tomcat:
+    max-threads: 5
+
+
+eureka:
+  client:
+    enabled: false
+
+ribbon:
+    ConnectTimeout: 25000
+    ReadTimeout: 25000
+
+
+
+
