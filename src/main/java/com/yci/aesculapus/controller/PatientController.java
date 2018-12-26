@@ -1,4 +1,4 @@
-package com.gtm.lukspay.devices.controller;
+package com.yci.aesculapus.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -9,8 +9,8 @@ import javax.transaction.Transactional;
 @Transactional
 @RestController
 @Slf4j
-@RequestMapping(path = "/devices")
-public class DeviceController {
+@RequestMapping(path = "/patients")
+public class PatientController {
 
     @PostMapping
     public void addNew() {

@@ -1,28 +1,34 @@
-package com.gtm.lukspay.devices;
+package com.yci.aesculapus;
 
 //import com.gtm.lukspay.security.annotation.EnableLukspayTokenSecurity;
 import com.gtm.lukspay.swagger.EnableLuksPaySwagger;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 import java.util.Arrays;
 
-@SpringBootApplication(scanBasePackages = {"com.gtm.lukspay",
-        "com.gtm.lukspay.devices.repository",
-        "com.gtm.lukspay.devices.controller"})
+@SpringBootApplication(scanBasePackages = {"com.yci.aesculapus"})
+      //  "com.gtm.lukspay.devices.repository",
+    //    "com.gtm.lukspay.devices.controller"})
 @EnableLuksPaySwagger
 //@EnableEurekaClient
 @Slf4j
 //@EnableLukspayTokenSecurity
-public class DevicesApplication {
+public class AesculapusApplication {
 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(DevicesApplication.class);
+        ConfigurableApplicationContext run = SpringApplication.run(AesculapusApplication.class);
         Environment env = run.getEnvironment();
         log.info("\n----------------------------------------------------------\n\t" +
                         "Application '{}' is running! Access URLs:\n\t" +

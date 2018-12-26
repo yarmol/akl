@@ -1,18 +1,19 @@
-package com.gtm.lukspay.devices.model;
+package com.yci.aesculapus.customer;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "lp_device")
-public class DeviceEntity {
+@Entity(name = "i_customer")
+public abstract class Customer {
 
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -20,23 +21,15 @@ public class DeviceEntity {
     @javax.persistence.Id
     private  Long id;
 
-    private  String clientId;
+    private String code;
 
-    private  String deviceId;
-
-    private  String name;
-
-    private  String description;
-
-    private  String comment;
-
-    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<IpAddressEntity> addresses;
+    private String name;
 
     @Column(name = "date_change")
     private ZonedDateTime dateChange;
 
     @Column(name = "date_creation")
     private ZonedDateTime dateCreation;
+
 
 }

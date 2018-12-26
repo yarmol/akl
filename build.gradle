@@ -111,6 +111,40 @@ dependencies {
     compile('org.hibernate:hibernate-validator')
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.0.RELEASE'
     //compile 'org.springframework:spring-dao:2.0.8'
+    compile 'org.modelmapper:modelmapper:2.3.0'
+
+    // https://mvnrepository.com/artifact/com.vaadin/vaadin-spring-boot-starter
+    compile group: 'com.vaadin', name: 'vaadin-spring-boot-starter', version: '12.0.3'
+
+    // https://mvnrepository.com/artifact/com.vaadin/vaadin-client
+    compile group: 'com.vaadin', name: 'vaadin-client', version: '8.6.3'
+
+    // https://mvnrepository.com/artifact/com.vaadin/vaadin-themes
+    compile group: 'com.vaadin', name: 'vaadin-themes', version: '8.6.3'
+
+    // https://mvnrepository.com/artifact/com.vaadin/vaadin-charts
+    compile group: 'com.vaadin', name: 'vaadin-charts', version: '4.0.5'
+
+// https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.1.3.RELEASE'
+
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.3.RELEASE'
+// https://mvnrepository.com/artifact/org.springframework/spring-tx
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.1.3.RELEASE'
+
+// https://mvnrepository.com/artifact/org.springframework/spring-orm
+    compile group: 'org.springframework', name: 'spring-orm', version: '5.1.3.RELEASE'
+
+    // https://mvnrepository.com/artifact/javax.validation/validation-api
+    //compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'    // https://mvnrepository.com/artifact/com.vaadin.addon/vaadin-charts
+    /*compile ('com.vaadin.addon:vaadin-charts:3.3.1'){
+        exclude(group: "javax.servlet")
+        exclude(group: "javax.validation")
+    }*/
+
+   // compile group: 'javax.validation:validation-api:2.0.1.Final'
+// https://mvnrepository.com/artifact/com.vaadin/vaadin-bom
+
 
     //test
     compile('junit:junit')
@@ -127,7 +161,10 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.7.RELEASE'
     //compile 'org.springframework:spring-dao:2.0.8'
     compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.1.3.RELEASE'
-    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.7.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-tx
+
+
     compile('junit:junit')
 
     //TEST
@@ -157,7 +194,7 @@ dependencies {
 
 // https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
     testCompile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.1.3.RELEASE'
-    testCompile group: 'org.springframework', name: 'spring-tx', version: '5.0.7.RELEASE'
+    testCompile group: 'org.springframework', name: 'spring-tx', version: '5.1.3.RELEASE'
     testCompile('junit:junit')
     testCompile ('org.springframework.boot:spring-boot-starter-data-mongodb')
             {
