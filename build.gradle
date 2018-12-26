@@ -1,4 +1,4 @@
-group 'com.gtm.lukspay'
+group 'com.yci.aesclepious'
 version '1.0.0'
 
 allprojects {
@@ -24,6 +24,8 @@ buildscript {
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE"
+       // classpath 'org.gretty:2.3.0'
+       // classpath 'com.devsoap.vaadin-flow:1.0.0.RC4'
     }
 }
 apply plugin: "java"
@@ -31,6 +33,8 @@ apply plugin: "application"
 apply plugin: "io.spring.dependency-management"
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
+//apply plugin: 'com.devsoap.vaadin-flow'
+
 
 dependencyManagement {
     imports {
@@ -66,7 +70,7 @@ run {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-mainClassName = 'com.gtm.lukspay.devices.DevicesApplication'
+mainClassName = 'com.yci.aesculapus.AesculapusApplication'
 
 dependencies {
     //COMPILE
@@ -124,6 +128,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.vaadin/vaadin-charts
     compile group: 'com.vaadin', name: 'vaadin-charts', version: '4.0.5'
+
+    compile 'org.vaadin.addons:fontawesomelabel:1.4.0'
+
 
 // https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
     compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.1.3.RELEASE'

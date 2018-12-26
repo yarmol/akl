@@ -1,8 +1,8 @@
 logging:
     level:
-        org.apache.coyote.http11 : DEBUG
-        org.springframework.security: DEBUG
-        com.gtm.lukspay: debug
+        #org.apache.coyote.http11 : DEBUG
+        #org.springframework.security: DEBUG
+        #com.gtm.lukspay: debug
         root: info
 
 

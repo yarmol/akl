@@ -25,7 +25,7 @@ public class Patient {
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "id", updatable = false, nullable = false)
     @javax.persistence.Id
-    private  Long id;
+    private Long id;
 
     private String code;
 
