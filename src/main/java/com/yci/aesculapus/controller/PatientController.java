@@ -5,30 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.ws.rs.QueryParam;
 
 @Transactional
 @RestController
 @Slf4j
 @RequestMapping(path = "/patients")
-public class PatientController {
+public class PatientController extends AbstractController {
 
-    @PostMapping
-    public void addNew() {
 
-    }
 
-    @GetMapping
-    public void getDevice() {
 
-    }
-
-    @GetMapping(path = "/all")
-    public void getAllDevice() {
-
-    }
-
-    @PutMapping(path = "")
-    public void changeDevice() {
-
-    }
 }
